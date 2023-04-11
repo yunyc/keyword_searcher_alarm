@@ -1,0 +1,63 @@
+{
+  "applications": "*",
+  "changelogDate": "20230310035239",
+  "clientRootFolder": "alarm",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "alarm",
+  "fields": [
+    {
+      "fieldName": "userId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "siteUrl",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "pattern"],
+      "fieldValidateRulesPattern": "^[A-Z][a-z]+\\d$"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "refeshTime",
+      "fieldType": "SelectedTime",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ONE,FIVE,TEN,THIRTY"
+    },
+    {
+      "fieldName": "musicTitle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "musicPath",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "vbEnabled",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "useSwitch",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "crawlingDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "alarm",
+  "name": "Alarm",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

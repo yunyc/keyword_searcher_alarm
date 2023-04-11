@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20230310035241",
+  "clientRootFolder": "alarm",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "notice",
+  "fields": [
+    {
+      "fieldName": "content",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "saveEnabled",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "visiabled",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "crawledDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "not an ignored comment",
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "alarm",
+  "name": "Notice",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "alarm",
+      "relationshipName": "alarm",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
