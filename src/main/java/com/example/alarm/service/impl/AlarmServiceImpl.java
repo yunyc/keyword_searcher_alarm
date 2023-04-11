@@ -41,18 +41,15 @@ public class AlarmServiceImpl implements AlarmService {
 
     private final AlarmProducer alarmProducer;
 
-    private final FCMNotificationService fcmNotificationService;
 
     public AlarmServiceImpl(
         AlarmRepository alarmRepository,
         AlarmMapper alarmMapper,
-        AlarmProducer alarmProducer,
-        FCMNotificationService fcmNotificationService
+        AlarmProducer alarmProducer
     ) {
         this.alarmRepository = alarmRepository;
         this.alarmMapper = alarmMapper;
         this.alarmProducer = alarmProducer;
-        this.fcmNotificationService = fcmNotificationService;
     }
 
     @Override
@@ -106,7 +103,6 @@ public class AlarmServiceImpl implements AlarmService {
     public Page<AlarmDTO> findAllByUserId(Pageable pageable, String userId) {
         log.debug("Request to get all Alarms");
 
-        fcmNotificationService.sendNotificationByToken(new FCMNotificationRequestDto(userId, "제목", "바디"));
 
         Alarm alarm = new Alarm();
         alarm.setUserId(userId);

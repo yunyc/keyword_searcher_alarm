@@ -1,11 +1,12 @@
 package com.example.alarm.service.impl;
 
-import com.example.alarm.domain.Alarm;
 import com.example.alarm.domain.Notice;
 import com.example.alarm.domain.event.NoticeChanged;
 import com.example.alarm.repository.NoticeRepository;
+import com.example.alarm.service.FCMNotificationService;
 import com.example.alarm.service.NoticeService;
 import com.example.alarm.web.rest.dto.AlarmDTO;
+import com.example.alarm.web.rest.dto.FCMNotificationRequestDto;
 import com.example.alarm.web.rest.dto.NoticeDTO;
 import com.example.alarm.web.rest.mapper.NoticeMapper;
 import java.util.Optional;
@@ -30,9 +31,13 @@ public class NoticeServiceImpl implements NoticeService {
 
     private final NoticeMapper noticeMapper;
 
-    public NoticeServiceImpl(NoticeRepository noticeRepository, NoticeMapper noticeMapper) {
+    private final FCMNotificationService fcmNotificationService;
+
+
+    public NoticeServiceImpl(NoticeRepository noticeRepository, NoticeMapper noticeMapper, FCMNotificationService fcmNotificationService) {
         this.noticeRepository = noticeRepository;
         this.noticeMapper = noticeMapper;
+        this.fcmNotificationService = fcmNotificationService;
     }
 
     @Override
@@ -106,10 +111,14 @@ public class NoticeServiceImpl implements NoticeService {
         AlarmDTO alarmDTO = new AlarmDTO();
         alarmDTO.setId(noticeChanged.getAlarmId());
         noticeDTO.setAlarm(alarmDTO);
+        noticeDTO.setUserId(noticeChanged.getUserId());
         noticeDTO.setContent(noticeChanged.getContent());
         noticeDTO.setSiteUrl(noticeChanged.getSiteUrl());
         noticeDTO.setCrawledDate(noticeChanged.getCrawledDate());
         save(noticeDTO);
+        fcmNotificationService.sendNotificationByToken(new FCMNotificationRequestDto(noticeChanged.getUserId(),
+            "키워드 알림이 도착했습니다.", noticeChanged.getContent()));
+
         //save
     }
 }
