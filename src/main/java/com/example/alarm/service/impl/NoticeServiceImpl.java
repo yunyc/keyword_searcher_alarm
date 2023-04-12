@@ -9,6 +9,8 @@ import com.example.alarm.web.rest.dto.AlarmDTO;
 import com.example.alarm.web.rest.dto.FCMNotificationRequestDto;
 import com.example.alarm.web.rest.dto.NoticeDTO;
 import com.example.alarm.web.rest.mapper.NoticeMapper;
+
+import java.time.LocalDate;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -114,7 +116,7 @@ public class NoticeServiceImpl implements NoticeService {
         noticeDTO.setUserId(noticeChanged.getUserId());
         noticeDTO.setContent(noticeChanged.getContent());
         noticeDTO.setSiteUrl(noticeChanged.getSiteUrl());
-        noticeDTO.setCrawledDate(noticeChanged.getCrawledDate());
+        noticeDTO.setCrawledDate(LocalDate.now());
         save(noticeDTO);
         fcmNotificationService.sendNotificationByToken(new FCMNotificationRequestDto(noticeChanged.getUserId(),
             "키워드 알림이 도착했습니다.", noticeChanged.getContent()));
