@@ -85,10 +85,9 @@ public class NoticeServiceImpl implements NoticeService {
     public Page<NoticeDTO> findAllByUserId(Pageable pageable, String userId, Boolean visiable) {
         log.debug("Request to get all Alarms");
 
-        // alarmProducer.
-
         Notice notice = new Notice();
         notice.setUserId(userId);
+        notice.setVisiabled(visiable);
 
         Example<Notice> userExample = Example.of(notice);
         return noticeRepository.findAll(userExample, pageable).map(noticeMapper::toDto);

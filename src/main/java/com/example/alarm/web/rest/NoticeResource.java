@@ -146,11 +146,10 @@ public class NoticeResource {
     @GetMapping("/notices")
     public ResponseEntity<List<NoticeDTO>> getAllNotices(
         @org.springdoc.api.annotations.ParameterObject Pageable pageable,
-        @RequestParam String userId,
-        @RequestParam(required = false) Boolean visiable
+        @RequestParam String userId
     ) {
         log.debug("REST request to get a page of Notices");
-        Page<NoticeDTO> page = noticeService.findAllByUserId(pageable, userId, visiable);
+        Page<NoticeDTO> page = noticeService.findAllByUserId(pageable, userId, true);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -183,4 +182,6 @@ public class NoticeResource {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
     }
+
+
 }

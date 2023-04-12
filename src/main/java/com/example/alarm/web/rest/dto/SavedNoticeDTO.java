@@ -1,17 +1,18 @@
 package com.example.alarm.web.rest.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
-import javax.validation.constraints.*;
 
 /**
  * A DTO for the {@link com.example.alarm.domain.Notice} entity.
  */
 @Schema(description = "not an ignored comment")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class NoticeDTO implements Serializable {
+public class SavedNoticeDTO implements Serializable {
 
     private Long id;
 
@@ -22,11 +23,9 @@ public class NoticeDTO implements Serializable {
 
     private String siteUrl;
 
-    private Boolean visiabled;
-
     private LocalDate crawledDate;
 
-    private AlarmDTO alarm;
+    private Long noticeId;
 
 
     public String getUserId() {
@@ -61,14 +60,6 @@ public class NoticeDTO implements Serializable {
         this.siteUrl = siteUrl;
     }
 
-    public Boolean getVisiabled() {
-        return visiabled;
-    }
-
-    public void setVisiabled(Boolean visiabled) {
-        this.visiabled = visiabled;
-    }
-
     public LocalDate getCrawledDate() {
         return crawledDate;
     }
@@ -77,12 +68,12 @@ public class NoticeDTO implements Serializable {
         this.crawledDate = crawledDate;
     }
 
-    public AlarmDTO getAlarm() {
-        return alarm;
+    public Long getNoticeId() {
+        return noticeId;
     }
 
-    public void setAlarm(AlarmDTO alarm) {
-        this.alarm = alarm;
+    public void setNoticeId(Long noticeId) {
+        this.noticeId = noticeId;
     }
 
     @Override
@@ -90,11 +81,11 @@ public class NoticeDTO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof NoticeDTO)) {
+        if (!(o instanceof SavedNoticeDTO)) {
             return false;
         }
 
-        NoticeDTO noticeDTO = (NoticeDTO) o;
+        SavedNoticeDTO noticeDTO = (SavedNoticeDTO) o;
         if (this.id == null) {
             return false;
         }
@@ -112,9 +103,7 @@ public class NoticeDTO implements Serializable {
         return "NoticeDTO{" +
             "id=" + getId() +
             ", content='" + getContent() + "'" +
-            ", visiabled='" + getVisiabled() + "'" +
             ", crawledDate='" + getCrawledDate() + "'" +
-            ", alarm=" + getAlarm() +
             "}";
     }
 }
