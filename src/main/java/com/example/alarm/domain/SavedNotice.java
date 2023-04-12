@@ -41,7 +41,7 @@ public class SavedNotice implements Serializable {
     private LocalDate crawledDate;
 
     @Column(name = "notice_id")
-    private Long notiecId;
+    private Long noticeId;
 
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -111,16 +111,16 @@ public class SavedNotice implements Serializable {
         this.crawledDate = crawledDate;
     }
 
-    public Long getNotiecId() {
-        return notiecId;
+    public Long getNoticeId() {
+        return noticeId;
     }
 
-    public void setNotiecId(Long notiecId) {
-        this.notiecId = notiecId;
+    public void setNoticeId(Long noticeId) {
+        this.noticeId = noticeId;
     }
 
-    public SavedNotice notiecId(Long notiecId) {
-        this.setNotiecId(notiecId);
+    public SavedNotice noticeId(Long noticeId) {
+        this.setNoticeId(noticeId);
         return this;
     }
 

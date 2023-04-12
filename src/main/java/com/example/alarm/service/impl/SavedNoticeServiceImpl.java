@@ -56,7 +56,7 @@ public class SavedNoticeServiceImpl implements SavedNoticeService {
         savedNotice.setSiteUrl(notice.getSiteUrl());
         savedNotice.setUserId(notice.getUserId());
         savedNotice.setCrawledDate(notice.getCrawledDate());
-        savedNotice.setNotiecId(notice.getId());
+        savedNotice.noticeId(notice.getId());
 
         if (sNotice == null) {
             savedNotice = savedNoticeRepository.save(savedNotice);
