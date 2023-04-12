@@ -22,10 +22,10 @@ logging:
 eureka:
   instance:
     prefer-ip-address: true
-    ip-address: ${MYSQL_USERNAME}
+    ip-address: 54.199.43.172
   client:
     service-url:
-      defaultZone: http://admin:${jhipster.registry.password}@${MYSQL_USERNAME}/eureka/
+      defaultZone: http://admin:${jhipster.registry.password}@13.115.79.152:8761/eureka/
 
 management:
   metrics:
@@ -45,7 +45,7 @@ spring:
         initial-interval: 1000
         max-interval: 2000
         max-attempts: 100
-      uri: http://admin:${jhipster.registry.password}@${MYSQL_USERNAME}/config
+      uri: http://admin:${jhipster.registry.password}@13.115.79.152:8761/config
       # name of the config server's property source (file.yml) that we want to use
       name: alarm
       profile: prod
@@ -53,9 +53,9 @@ spring:
       # it can be set to any label, branch or commit of the configuration source Git repository
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mariadb://${MYSQL_USERNAME}:3306/alarm
-    username: ${MYSQL_USERNAME}
-    password: ${MYSQL_USERNAME}
+    url: jdbc:mariadb://database-1.cwma6twijcul.ap-northeast-1.rds.amazonaws.com:3306/alarm
+    username: yeomin1024
+    password: btv4ue12
     hikari:
       poolName: Hikari
       auto-commit: false
