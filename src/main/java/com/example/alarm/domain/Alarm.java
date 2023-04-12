@@ -261,17 +261,22 @@ public class Alarm implements Serializable {
         Document doc = Jsoup.connect(this.siteUrl).get(); // 웹사이트 HTML 가져오기
 
         for (String keyword : keyword.split(",")) {
+            System.out.println(keyword);
             Elements elements = doc.select("a:contains(" + keyword + ")"); // a 태그에서 "키워드"가 포함된 태그 선택
 
-            for (Element element : elements) {
-                Notice notice = new Notice();
-                notice.setAlarm(this);
-                notice.setSiteUrl(this.siteUrl);
-                notice.setContent(element.text());
-                notice.setVisiabled(false);
+            if (!elements.isEmpty()) {
+                System.out.println("저장");
+                for (Element element : elements) {
+                    Notice notice = new Notice();
+                    notice.setAlarm(this);
+                    notice.setSiteUrl(this.siteUrl);
+                    notice.setContent(element.text());
+                    notice.setVisiabled(false);
 
-                this.notices.add(notice);
+                    this.notices.add(notice);
+                }
             }
+
         }
     }
 }
