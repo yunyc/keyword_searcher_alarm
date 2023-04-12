@@ -269,7 +269,7 @@ public class Alarm implements Serializable {
                 for (Element element : elements) {
                     Notice notice = new Notice();
                     notice.setAlarm(this);
-                    notice.setSiteUrl(this.siteUrl);
+                    notice.setSiteUrl(element.attr("href"));
                     notice.setContent(element.text());
                     notice.setVisiabled(false);
 
