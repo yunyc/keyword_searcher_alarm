@@ -139,6 +139,7 @@ public class AlarmServiceImpl implements AlarmService {
             alarmChanged.setSiteUrl(alarm.getSiteUrl());
             alarmChanged.setRefeshTime(alarm.getRefeshTime());
             alarmChanged.setVbEnabled(alarm.getVbEnabled());
+            alarmChanged.setUserId(alarm.getUserId());
             alarm.getNotices().forEach((notice -> alarmChanged.getExcludeUrl().add(notice.getSiteUrl())));
             alarmChanged.setEventType(eventType);
             alarmProducer.sendAlarmCreatedEvent(alarmChanged);
