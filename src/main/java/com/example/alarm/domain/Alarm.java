@@ -66,7 +66,7 @@ public class Alarm implements Serializable {
     @Column(name = "crawling_date")
     private LocalDate crawlingDate;
 
-    @OneToMany(mappedBy = "alarm", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+    @OneToMany(mappedBy = "alarm", cascade = { CascadeType.REMOVE })
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "alarm" }, allowSetters = true)
     private Set<Notice> notices = new HashSet<>();
