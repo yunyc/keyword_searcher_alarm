@@ -116,6 +116,7 @@ public class NoticeServiceImpl implements NoticeService {
         noticeDTO.setContent(noticeChanged.getContent());
         noticeDTO.setSiteUrl(noticeChanged.getSiteUrl());
         noticeDTO.setCrawledDate(LocalDate.now());
+        noticeDTO.setVisiabled(true);
         save(noticeDTO);
         fcmNotificationService.sendNotificationByToken(new FCMNotificationRequestDto(noticeChanged.getUserId(),
             "키워드 알림이 도착했습니다.", noticeChanged.getContent()));
